@@ -1,7 +1,7 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import router from './routes/routes.js';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import router from "./routes/routes.js";
 
 dotenv.config();
 
@@ -12,5 +12,5 @@ app.use(cors());
 app.use(router);
 
 app.listen(port, () => {
-    console.log(`Running on ${port}`);
+  console.log(`Running on ${port}`);
 });
