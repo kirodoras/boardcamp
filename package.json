@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./back/src/index.js",
-    "dev": "npx nodemon ./back/src/index.js" 
+    "dev": "npx nodemon ./back/src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "joi": "^17.6.0"
+    "joi": "^17.6.0",
+    "pg": "^8.7.3"
   }
 }
