@@ -1,10 +1,7 @@
 import express from 'express';
-import connection from '../databases/postgres.js';
+import categoriesRouter from './categoriesRouter.js';
 
 const router = express.Router();
-router.get(('/test'), async (req, res) => {
-    const test = await connection.query('SELECT * FROM customers');
-    res.send(test.rows);
-});
+router.use(categoriesRouter);
 
 export default router;
