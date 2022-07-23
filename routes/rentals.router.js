@@ -2,6 +2,7 @@ import express from "express";
 import {
   listRentals,
   insertRental,
+  finishRental,
 } from "../controllers/rentals.controller.js";
 
 import {
@@ -22,4 +23,5 @@ rentalsRouter.post(
   checkGameAvailabity,
   insertRental
 );
+rentalsRouter.post("/rentals/:id/return", finishRental);
 export default rentalsRouter;
