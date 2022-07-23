@@ -15,3 +15,19 @@ export async function listCustomers(req, res) {
     return;
   }
 }
+
+export async function getCustomer(req, res) {
+  try {
+    const { id } = req.params;
+    const { rows: customer } = await connection.query(
+      `SELECT * FROM customers WHERE customers.id = $1`,
+      [id]
+    );
+    res.send(customer);
+    return;
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
+}
