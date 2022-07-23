@@ -1,4 +1,5 @@
 import connection from "../databases/postgres.js";
+import dayjs from "dayjs";
 
 export async function listRentals(req, res) {
   const { customerId, gameId } = req.query;
@@ -47,6 +48,39 @@ export async function listRentals(req, res) {
     });
     res.send(rentalsJoin);
     return;
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
+}
+
+export async function insertRental(req, res) {
+  try {
+    const { customerId, gameId, daysRented } = req.body;
+    const { rows: game } = await connection.query(
+      `SELECT * FROM games WHERE id = ${gameId}`
+    );
+    const rentDate = dayjs().format("YYYY-MM-DD");
+    const originalPrice = game[0].pricePerDay * daysRented;
+    const returnDate = null;
+    const delayFee = null;
+
+    await connection.query(
+      `INSERT INTO rentals ("customerId", "gameId", "rentDate", "daysRented", "originalPrice", "returnDate", "delayFee")
+        VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      [
+        customerId,
+        gameId,
+        rentDate,
+        daysRented,
+        originalPrice,
+        returnDate,
+        delayFee,
+      ]
+    );
+
+    res.send(game);
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
