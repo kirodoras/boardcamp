@@ -3,6 +3,7 @@ import {
   listRentals,
   insertRental,
   finishRental,
+  deleteRental,
 } from "../controllers/rentals.controller.js";
 
 import {
@@ -12,6 +13,7 @@ import {
   checkGameAvailabity,
   checkRentalExists,
   checkRentalAvailability,
+  checkRentalFinish
 } from "../middlewares/rental.middleware.js";
 
 const rentalsRouter = express.Router();
@@ -30,6 +32,12 @@ rentalsRouter.post(
   checkRentalExists,
   checkRentalAvailability,
   finishRental
+);
+rentalsRouter.delete(
+  "/rentals/:id",
+  checkRentalExists,
+  checkRentalFinish,
+  deleteRental
 );
 
 export default rentalsRouter;
