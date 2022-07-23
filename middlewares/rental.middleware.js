@@ -28,3 +28,22 @@ export async function checkCustomerExistsByBody(req, res, next) {
     return;
   }
 }
+
+export async function checkGameExistsByBody(req, res, next) {
+  try {
+    const { gameId } = req.body;
+    const { rows: game } = await connection.query(
+      `SELECT * FROM games WHERE games.id = $1`,
+      [gameId]
+    );
+    if (!game.length) {
+      res.status(400).send("Game not found");
+      return;
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
+}
