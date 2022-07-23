@@ -1,3 +1,4 @@
+import connection from "../databases/postgres.js";
 import { rentalSchema } from "../schemas/rental.schema.js";
 
 export async function validateRental(req, res, next) {
@@ -7,4 +8,23 @@ export async function validateRental(req, res, next) {
     return;
   }
   next();
+}
+
+export async function checkCustomerExistsByBody(req, res, next) {
+  try {
+    const { customerId } = req.body;
+    const { rows: customer } = await connection.query(
+      `SELECT * FROM customers WHERE customers.id = $1`,
+      [customerId]
+    );
+    if (!customer.length) {
+      res.status(400).send("Customer not found");
+      return;
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
 }

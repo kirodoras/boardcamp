@@ -4,10 +4,18 @@ import {
   insertRental,
 } from "../controllers/rentals.controller.js";
 
-import { validateRental } from "../middlewares/rental.middleware.js";
+import {
+  validateRental,
+  checkCustomerExistsByBody,
+} from "../middlewares/rental.middleware.js";
 
 const rentalsRouter = express.Router();
 
 rentalsRouter.get("/rentals", listRentals);
-rentalsRouter.post("/rentals", validateRental, insertRental);
+rentalsRouter.post(
+  "/rentals",
+  validateRental,
+  checkCustomerExistsByBody,
+  insertRental
+);
 export default rentalsRouter;
