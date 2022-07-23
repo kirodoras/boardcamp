@@ -31,3 +31,19 @@ export async function getCustomer(req, res) {
     return;
   }
 }
+
+export async function insertCustomer(req, res) {
+  try {
+    const { name, phone, cpf, birthday } = req.body;
+    await connection.query(
+      `INSERT INTO customers (name, phone, cpf, birthday) VALUES ($1, $2, $3, $4)`,
+      [name, phone, cpf, birthday]
+    );
+    res.sendStatus(201);
+    return;
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
+}
