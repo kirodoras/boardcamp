@@ -89,3 +89,22 @@ export async function checkRentalExists(req, res, next) {
     return;
   }
 }
+
+export async function checkRentalAvailability(req, res, next) {
+  try {
+    const { id } = req.params;
+    const { rows: rental } = await connection.query(
+      `SELECT * FROM rentals WHERE rentals.id = $1`,
+      [id]
+    );
+    if (rental[0].returnDate != null) {
+      res.status(400).send("Rental not available");
+      return;
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
+}
