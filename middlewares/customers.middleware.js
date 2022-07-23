@@ -35,3 +35,22 @@ export async function validateCustomer(req, res, next) {
     return;
   }
 }
+
+export async function checkCustomerExistsByCpf(req, res, next) {
+  try {
+    const { cpf } = req.body;
+    const { rows: customer } = await connection.query(
+      `SELECT * FROM customers WHERE customers.cpf = $1`,
+      [cpf]
+    );
+    if (customer.length) {
+      res.status(409).send("Customer already exists");
+      return;
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
+}

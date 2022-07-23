@@ -1,10 +1,23 @@
 import express from "express";
-import { listCustomers, getCustomer, insertCustomer } from "../controllers/customers.controller.js";
-import { checkCustomerExists, validateCustomer } from "../middlewares/customers.middleware.js";
+import {
+  listCustomers,
+  getCustomer,
+  insertCustomer,
+} from "../controllers/customers.controller.js";
+import {
+  checkCustomerExists,
+  validateCustomer,
+  checkCustomerExistsByCpf,
+} from "../middlewares/customers.middleware.js";
 const customersRouter = express.Router();
 
 customersRouter.get("/customers", listCustomers);
 customersRouter.get("/customers/:id", checkCustomerExists, getCustomer);
-customersRouter.post("/customers",  validateCustomer , insertCustomer);
+customersRouter.post(
+  "/customers",
+  validateCustomer,
+  checkCustomerExistsByCpf,
+  insertCustomer
+);
 
 export default customersRouter;
