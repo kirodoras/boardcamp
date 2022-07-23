@@ -80,7 +80,7 @@ export async function insertRental(req, res) {
       ]
     );
 
-    res.send(game);
+    res.sendStatus(201);
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
