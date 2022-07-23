@@ -106,7 +106,7 @@ export async function finishRental(req, res) {
       dayjs(rental[0].rentDate),
       "day"
     );
-    const delayFee = daysRentedTotal
+    const delayFee = daysRentedTotal === rental[0].daysRented
       ? (daysRentedTotal - rental[0].daysRented) * game[0].pricePerDay
       : 0;
 
