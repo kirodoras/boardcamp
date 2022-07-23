@@ -95,7 +95,7 @@ export async function finishRental(req, res) {
       `SELECT * FROM rentals WHERE id = $1`,
       [id]
     );
-    console.log(rental);
+    
     const { rows: game } = await connection.query(
       `SELECT * FROM games WHERE id = $1`,
       [rental[0].gameId]
