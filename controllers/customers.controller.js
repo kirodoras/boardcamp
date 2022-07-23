@@ -23,7 +23,7 @@ export async function getCustomer(req, res) {
       `SELECT * FROM customers WHERE customers.id = $1`,
       [id]
     );
-    res.send(customer);
+    res.send(customer[0]);
     return;
   } catch (error) {
     console.log(error);
