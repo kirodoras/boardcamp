@@ -95,7 +95,7 @@ export async function finishRental(req, res) {
       `SELECT * FROM rentals WHERE id = $1`,
       [id]
     );
-    
+
     const { rows: game } = await connection.query(
       `SELECT * FROM games WHERE id = $1`,
       [rental[0].gameId]
@@ -106,9 +106,10 @@ export async function finishRental(req, res) {
       dayjs(rental[0].rentDate),
       "day"
     );
-    const delayFee = daysRentedTotal === rental[0].daysRented
-      ? (daysRentedTotal - rental[0].daysRented) * game[0].pricePerDay
-      : 0;
+    const delayFee =
+      daysRentedTotal >= rental[0].daysRented
+        ? (daysRentedTotal - rental[0].daysRented) * game[0].pricePerDay
+        : 0;
 
     await connection.query(
       `UPDATE rentals SET "returnDate" = $1, "delayFee" = $2 WHERE id = $3`,
