@@ -47,3 +47,26 @@ export async function checkGameExistsByBody(req, res, next) {
     return;
   }
 }
+
+export async function checkGameAvailabity(req, res, next) {
+  try {
+    const { gameId } = req.body;
+    const { rows: game } = await connection.query(
+      `SELECT * FROM games WHERE games.id = $1`,
+      [gameId]
+    );
+    const { rows: rentals } = await connection.query(
+      `SELECT * FROM rentals WHERE rentals."gameId" = $1`,
+      [gameId]
+    );
+    if (game[0].stockTotal <= rentals.length) {
+      res.status(400).send("Game not available");
+      return;
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+    return;
+  }
+}

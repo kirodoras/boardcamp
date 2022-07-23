@@ -7,7 +7,8 @@ import {
 import {
   validateRental,
   checkCustomerExistsByBody,
-  checkGameExistsByBody
+  checkGameExistsByBody,
+  checkGameAvailabity,
 } from "../middlewares/rental.middleware.js";
 
 const rentalsRouter = express.Router();
@@ -18,6 +19,7 @@ rentalsRouter.post(
   validateRental,
   checkCustomerExistsByBody,
   checkGameExistsByBody,
+  checkGameAvailabity,
   insertRental
 );
 export default rentalsRouter;
