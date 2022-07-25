@@ -22,7 +22,8 @@ export async function checkCustomerExists(req, res, next) {
 
 export async function validateCustomer(req, res, next) {
   try {
-    const { name, phone, cpf, birthday } = req.body;
+    const { name, phone, cpf, birthday: bday } = req.body;
+    const birthday = bday.substring(0, 10);
     const { error } = customerSchema.validate({ name, phone, cpf, birthday });
     if (error) {
       res.status(400).send(error.details[0].message);
