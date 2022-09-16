@@ -1,9 +1,9 @@
 import express from "express";
-import { listGames, insertGame } from "../controllers/games.controller.js";
+import { listGames, insertGame } from "../controllers/gamesController.js";
 import {
   validateGame,
   checkGameExists,
-} from "../middlewares/games.middleware.js";
+} from "../middlewares/gamesMiddleware.js";
 
 const gamesRouter = express.Router();
 

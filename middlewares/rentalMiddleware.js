@@ -1,5 +1,5 @@
 import connection from "../databases/postgres.js";
-import { rentalSchema } from "../schemas/rental.schema.js";
+import { rentalSchema } from "../schemas/rentalSchema.js";
 
 export async function validateRental(req, res, next) {
   const { error } = rentalSchema.validate(req.body);

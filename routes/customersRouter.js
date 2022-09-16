@@ -4,12 +4,12 @@ import {
   getCustomer,
   insertCustomer,
   updateCustomer,
-} from "../controllers/customers.controller.js";
+} from "../controllers/customersController.js";
 import {
   checkCustomerExists,
   validateCustomer,
   checkCustomerExistsByCpf,
-} from "../middlewares/customers.middleware.js";
+} from "../middlewares/customersMiddleware.js";
 
 const customersRouter = express.Router();
 

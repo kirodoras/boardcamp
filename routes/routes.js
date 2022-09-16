@@ -1,8 +1,8 @@
 import express from "express";
-import categoriesRouter from "./categories.router.js";
-import customersRouter from "./customers.router.js";
-import gamesRouter from "./games.router.js";
-import rentalsRouter from "./rentals.router.js";
+import categoriesRouter from "./categoriesRouter.js";
+import customersRouter from "./customersRouter.js";
+import gamesRouter from "./gamesRouter.js";
+import rentalsRouter from "./rentalsRouter.js";
 
 const router = express.Router();
 router.use(categoriesRouter);

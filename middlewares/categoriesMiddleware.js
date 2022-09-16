@@ -1,5 +1,5 @@
 import connection from "../databases/postgres.js";
-import { categorySchema } from "../schemas/categories.schema.js";
+import { categorySchema } from "../schemas/categoriesSchema.js";
 
 export async function validateCategory(req, res, next) {
   const { error } = categorySchema.validate(req.body);

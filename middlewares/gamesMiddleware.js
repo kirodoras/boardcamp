@@ -1,5 +1,5 @@
 import connection from "../databases/postgres.js";
-import { gameSchema } from "../schemas/games.schema.js";
+import { gameSchema } from "../schemas/gamesSchema.js";
 
 export async function validateGame(req, res, next) {
   const { error } = gameSchema.validate(req.body);

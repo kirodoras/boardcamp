@@ -2,11 +2,11 @@ import express from "express";
 import {
   listCategories,
   insertCategory,
-} from "../controllers/categories.controller.js";
+} from "../controllers/categoriesController.js";
 import {
   validateCategory,
   checkCategoryExists,
-} from "../middlewares/categories.middleware.js";
+} from "../middlewares/categoriesMiddleware.js";
 
 const categoriesRouter = express.Router();
 

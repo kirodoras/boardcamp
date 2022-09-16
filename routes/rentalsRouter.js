@@ -4,7 +4,7 @@ import {
   insertRental,
   finishRental,
   deleteRental,
-} from "../controllers/rentals.controller.js";
+} from "../controllers/rentalsController.js";
 
 import {
   validateRental,
@@ -14,7 +14,7 @@ import {
   checkRentalExists,
   checkRentalAvailability,
   checkRentalFinish
-} from "../middlewares/rental.middleware.js";
+} from "../middlewares/rentalMiddleware.js";
 
 const rentalsRouter = express.Router();
 

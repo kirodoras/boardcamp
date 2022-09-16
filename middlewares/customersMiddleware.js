@@ -1,5 +1,5 @@
 import connection from "../databases/postgres.js";
-import { customerSchema } from "../schemas/customers.schema.js";
+import { customerSchema } from "../schemas/customersSchema.js";
 
 export async function checkCustomerExists(req, res, next) {
   try {
